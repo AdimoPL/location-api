@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @OA\Info(title="Search API", version="1.0.0")
- */
-
 require "../bootstrap.php";
 use Src\Controller\UserController;
 use OpenApi\Annotations as OA;
