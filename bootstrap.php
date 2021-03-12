@@ -10,4 +10,3 @@ $dotenv -> load();
 
 $dbConnection = (new DatabaseConnector())->getConnection();
 
-//test code
