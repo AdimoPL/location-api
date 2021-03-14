@@ -83,7 +83,7 @@ class UserController {
     private function createUserFromRequest()
     {
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
-        if (! $this->validatePerson($input)) {
+        if (! $this->validateUser($input)) {
             return $this->unprocessableEntityResponse();
         }
         $this->userGateway->insert($input);
@@ -99,7 +99,7 @@ class UserController {
             return $this->notFoundResponse();
         }
         $input = (array) json_decode(file_get_contents('php://input'), TRUE);
-        if (! $this->validatePerson($input)) {
+        if (! $this->validateUser($input)) {
             return $this->unprocessableEntityResponse();
         }
         $this->userGateway->update($id, $input);
@@ -120,12 +120,15 @@ class UserController {
         return $response;
     }
 
-    private function validatePerson($input)
+    private function validateUser($input)
     {
-        if (! isset($input['firstname'])) {
+        if (! isset($input['username'])) {
             return false;
         }
-        if (! isset($input['lastname'])) {
+        if (! isset($input['latitude'])) {
+            return false;
+        }
+        if (! isset($input['longitude'])) {
             return false;
         }
         return true;
