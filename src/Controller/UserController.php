@@ -102,9 +102,9 @@ class UserController {
         if (! $this->validateUser($input)) {
             return $this->unprocessableEntityResponse();
         }
-        $this->userGateway->update($id, $input);
+        $dbResponse['UpdatedRows'] = $this->userGateway->update($id, $input);
         $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = null;
+        $response['body'] = json_encode($dbResponse);
         return $response;
     }
 
