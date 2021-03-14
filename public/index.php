@@ -16,7 +16,7 @@ $uri = explode( '/', $uri );
 // all of our endpoints start with /person
 // everything else results in a 404 Not Found
 if ($uri[1] !== 'users') {
-    header("HTTP/1.1 404 Not Found");
+    header("Location: swagger/");
     exit();
 }
 
