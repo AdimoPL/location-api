@@ -36,6 +36,42 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Main API"
+        ],
+        "summary": "Add a new User",
+        "description": "",
+        "operationId": "addUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "JSON object representing the user values",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserUpdate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "schema": {
+              "$ref": "#/definitions/InvalidInput"
+            }
+          }
+        }
       }
     },
     "/{id}": {
@@ -69,49 +105,6 @@
           },
           "404": {
             "description": "User not found"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Main API"
-        ],
-        "summary": "Add a new User",
-        "description": "",
-        "operationId": "addUser",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Id of the user you wish to obtain info about",
-            "required": true,
-            "type": "number"
-          },
-          {
-            "in": "body",
-            "name": "body",
-            "description": "JSON object representing the user values",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UserUpdate"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity",
-            "schema": {
-              "$ref": "#/definitions/InvalidInput"
-            }
           }
         }
       },
@@ -165,7 +158,6 @@
             "name": "body",
             "description": "Updated user object",
             "required": true,
-            "type": "object",
             "schema": {
               "$ref": "#/definitions/UserUpdate"
             }
