@@ -64,7 +64,7 @@ class UserGateway{
                 'longitude' => $input['longitude'],
                 'timestamp' => $input['timestamp'] ?? 'CURRENT_TIMESTAMP',
                 ));
-            return $statement->rowCount();
+            return $this->db->lastInsertId();
         } catch (PDOException $e) {
             exit($e->getMessage());
         }

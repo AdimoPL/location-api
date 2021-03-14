@@ -56,20 +56,6 @@ class UserController {
     }
 
     private function getUser($id)
-        /**
-         * @OA\Get (
-         *     path="/users",
-         *     summary="Returns user with provided id",
-         *     description="Search for an object, if found return it!",
-         *     @OA\Response(
-         *         response=200,
-         *         description="Success",
-         *     @OA\Response(
-         *         response=404,
-         *         description="Could Not Find Resource"
-         *     )
-         * )
-         */
     {
         $result = $this->userGateway->find($id);
         if (! $result) {
@@ -86,9 +72,9 @@ class UserController {
         if (! $this->validateUser($input)) {
             return $this->unprocessableEntityResponse();
         }
-        $this->userGateway->insert($input);
+        $lastId = $this->userGateway->insert($input);
         $response['status_code_header'] = 'HTTP/1.1 201 Created';
-        $response['body'] = null;
+        $response['body'] = json_encode($this->userGateway->find($lastId));
         return $response;
     }
 
